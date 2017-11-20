@@ -1,6 +1,7 @@
 {
   "name": "lps-dashboard",
   "version": "0.1.0",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "d3": "^4.11.0",
