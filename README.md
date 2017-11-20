@@ -12,17 +12,17 @@
 ### Schema
 The dashboard could be used with any dataset that adheres to the following schema.
 
-AssessmentID
-AssessmentTitle
-CourseName
-Section
-StandardID
-StandardTitle
-StandardType
-TeacherName
-Student
-Score (assumed to be 0-100)
-Weight
+AssessmentID  
+AssessmentTitle  
+CourseName  
+Section  
+StandardID  
+StandardTitle  
+StandardType  
+TeacherName  
+Student  
+Score (assumed to be 0-100)  
+Weight  
 
 ### File upload
 
