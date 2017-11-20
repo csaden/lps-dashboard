@@ -1,0 +1,234 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+html, body {
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+a,
+a:focus {
+  color: #525c65;
+}
+
+a:hover,
+a:active {
+  color: #7d97ad;
+}
+
+h2 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+p {
+  line-height: 1.2;
+}
+
+button:focus {
+  outline: none;
+}
+
+.App-header {
+  background-color: #481151;
+  padding: 1em;
+  font-size: 1.2em;
+  color: white;
+}
+
+.App-main {
+  padding: 1.5em;
+  margin: 0 auto;
+}
+
+.App-title {
+  font-size: 1em;
+  text-transform: uppercase;
+}
+
+.App-file-reader {
+  margin-bottom: 1em;
+}
+
+.App-intro {
+  font-size: 1em;
+  margin-bottom: 1em;
+}
+
+.Select-class {
+  width: 100%;
+  margin-bottom: 60px;
+}
+
+.student-info {
+  margin-bottom: 40px;
+}
+
+.dashboard {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.standards {
+  flex-basis: 60%;
+}
+
+.students {
+  flex-basis: 35%;
+}
+
+.standard {
+  display: flex;
+  flex-flow: row-nowrap;
+  align-items: center;
+  justify-content: space-between;
+  max-height: 60px;
+}
+
+.standard-group + .standard-group,
+.standard + .standard {
+  margin-top: 20px;
+}
+
+.standard-title {
+  flex-basis: 30%;
+  text-overflow: ellipsis;
+}
+
+.standard-bars {
+  display: flex;
+  min-width: 105px;
+  justify-content: space-between;
+  border: 1px solid #dbe2e8;
+}
+
+.labels {
+  border: none;
+}
+
+.standard-bar {
+  flex-basis: 1%;
+  min-width: 20px; /* matches WIDTH of bar */
+  text-align: center;
+}
+
+.standard-value {
+  flex-basis: 3%;
+}
+
+.rotate {
+  width: 3%;
+  transform: rotate(-45deg);
+}
+
+.student-tooltip {
+  position: absolute;
+  display: none;
+  min-width: 80px;
+  height: auto;
+  background: none repeat scroll 0 0 #ffffff;
+  border-radius: 4px;
+  border: 1px solid #dbe2e8;
+  padding: 14px;
+  text-align: center;
+}
+
+.student-grades-x-axis > .tick {
+  fill: #dbe2e8;
+}
+
+.toggle {
+  width: 40px;
+  height: 40px;
+}
+
+.toggle-btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* from https://stackoverflow.com/a/22156412 */
+.Chevron {
+    position: relative;
+    display: block;
+    height: 20px; /*height should be double border*/
+}
+.Chevron:before,
+.Chevron:after {
+    position: absolute;
+    display: block;
+    content: "";
+    border: 10px solid transparent; /*adjust size*/
+}
+/* Replace all text `top` below with left/right/bottom to rotate the chevron */
+.Chevron-down:before {
+    top: 0;
+    border-top-color: rgb(152, 78, 163); /*Chevron Color*/
+}
+
+.Chevron-down:after {
+    top: -4px; /*adjust thickness*/
+    border-top-color: #fff; /*Match background colour*/
+}
+
+.Chevron-right:before {
+    left: 0;
+    border-left-color: rgb(152, 78, 163);
+}
+
+.Chevron-right:after {
+    left: -4px;
+    border-left-color: #fff;
+}
