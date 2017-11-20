@@ -5,8 +5,6 @@ import {A, B, C, D} from '../constants/grades';
 
 export function groupDataByClass(data) {
   return d3.nest()
-    .key(d => d.CourseName)
-    .key(d => d.TeacherName)
     .key(d => d.Section)
     .rollup(v => {
       return {assessments: v};
@@ -14,14 +12,14 @@ export function groupDataByClass(data) {
     .object(data);
 }
 
-export function getStandards(data, {CourseName, TeacherName, Section}) {
-  const {assessments} = data[CourseName][TeacherName][Section];
+export function getStandards(data, {Section}) {
+  const {assessments} = data[Section];
   return getStandardAggregates(assessments);
 }
 
-export function getStudentScores(data, {CourseName, TeacherName, Section, id, type}) {
+export function getStudentScores(data, {Section, id, type}) {
   const idKey = type === 'standard' ? 'StandardID' : 'AssessmentID'
-  let {assessments} = data[CourseName][TeacherName][Section];
+  let {assessments} = data[Section];
   assessments = _.filter(assessments, (a) => a[idKey] === id);
 
 
@@ -33,6 +31,10 @@ export function getStudentScores(data, {CourseName, TeacherName, Section, id, ty
       };
     })
     .object(assessments);
+}
+
+export function getStandardCounts(data) {
+  return _.size(_.uniq(_.map(data, 'StandardID')));
 }
 
 function getStandardAggregates(data) {

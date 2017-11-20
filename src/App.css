@@ -103,17 +103,17 @@ button:focus {
 
 .Select-class {
   width: 100%;
-  margin-bottom: 60px;
-}
-
-.student-info {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .dashboard {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
+}
+
+.dashboard:first-of-type {
+  margin-bottom: 40px;
 }
 
 .bold {
@@ -141,9 +141,14 @@ button:focus {
   margin-top: 20px;
 }
 
+.standard-link {
+  overflow: hidden;
+  display: inline-block;
+  max-height: 60px; /* Same as max-height for .standard (standard row) */
+}
+
 .standard-title {
   flex-basis: 30%;
-  text-overflow: ellipsis;
 }
 
 .standard-bars {
