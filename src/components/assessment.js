@@ -25,10 +25,9 @@ export default class Assessment extends Component {
   }
 
   handleAssessmentClick = (event) => {
+    event.preventDefault();
     const {assessment, onClick} = this.props;
     const {assessmentID, assessmentTitle} = assessment;
-    console.log(assessmentID, assessmentTitle);
-    event.preventDefault();
     onClick({id: assessmentID, title: assessmentTitle, type: 'assessment'});
   }
 
