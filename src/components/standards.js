@@ -22,7 +22,7 @@ export default class Standards extends Component {
       <section className='standards'>
         <div className='standard'>
           <span className='toggle'/>
-          <span className='bold standard-title'><em>Standard</em></span>
+          <span className='bold standard-title'>Learning Targets ({_.size(standards)})</span>
           <span className='rotate standard-value'>Assessments</span>
           <span className='standard-bars labels'>
             <span className='bold standard-bar'>A</span>

@@ -77,7 +77,7 @@ export default class Standard extends Component {
             onClick={this.handleToggleAssessents}>
             <i className={`Chevron ${isToggled ? 'Chevron-down' : 'Chevron-right'}`}/>
           </button>
-          <span className='standard-title'>
+          <span className='standard-link standard-title'>
             <a
               href={`#${standardID}`}
               onClick={this.handleStandardClick}>

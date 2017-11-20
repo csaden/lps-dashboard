@@ -1,15 +1,13 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
 import Select from 'react-select';
 import Papa from 'papaparse';
 
-import getSelectOptions, {CLASS_TUPLE_JOIN_TEXT} from './utils/dropdowns';
+import getSelectOptions from './utils/dropdowns';
 import {
   groupDataByClass,
   getStandards,
-  getStudentScores
+  getStudentScores,
 } from './utils/aggregate';
-import SELECTS from './constants/select';
 import Standards from './components/standards';
 import Students from './components/students';
 import './App.css';
@@ -36,7 +34,7 @@ class App extends Component {
 
   setData = ({data}) => {
     data = groupDataByClass(data);
-    this.setState({data}, this.setClassTuples);
+    this.setState({data}, this.setClassSelections);
   }
 
   setError = (err, file, inputElem, reason) => {
@@ -44,29 +42,28 @@ class App extends Component {
     this.setState({error: `Unable to upload file ${file.name}: ${reason}`});
   }
 
-  setClassTuples = () => {
+  setClassSelections = () => {
     const {data} = this.state;
     this.setState({classes: getSelectOptions(data)});
   }
 
   setStandards = () => {
-    const {classTuple, data, TeacherName, CourseName, Section} = this.state;
-    if (classTuple) {
-      const standards = getStandards(data, {TeacherName, CourseName, Section});
+    const {data, Section} = this.state;
+    if (Section) {
+      const standards = getStandards(data, {Section});
       this.setState({standards});
     }
   }
 
   handleSelectClass = (option) => {
-    const classTuple = option ? option.value : null;
-    const classKeys = _.zipObject(_.map(SELECTS, 'key'), classTuple.split(CLASS_TUPLE_JOIN_TEXT));
-    this.setState({classTuple, ...classKeys}, this.setStandards);
+    const Section = option ? option.value : null;
+    this.setState({Section}, this.setStandards);
   }
 
   handleStandardClick = ({id, title, type}) => {
-    const {data, CourseName, TeacherName, Section} = this.state;
-    const students = getStudentScores(data, {CourseName, TeacherName, Section, id, type});
-    this.setState({selectedId: id, selectedTitle: title, students});
+    const {data, Section} = this.state;
+    const students = getStudentScores(data, {Section, id, type});
+    this.setState({selectedId: id, selectedTitle: title, selectedType: type, students});
   }
 
   render() {
@@ -74,10 +71,11 @@ class App extends Component {
       data,
       error,
       classes,
-      classTuple,
       standards,
+      Section,
       selectedId,
       selectedTitle,
+      selectedType,
       students
     } = this.state;
 
@@ -113,8 +111,21 @@ class App extends Component {
                   options={this.state.classes}
                   placeholder='Select class'
                   searchable={true}
-                  value={classTuple}
+                  value={Section}
                 />
+              </div>
+            }
+            {selectedId &&
+              <div className='students'>
+                <h2 className='bold studen-title'>{selectedType === 'assessment' ? 'Assessment' : 'Learning Target'} Details</h2>
+                <p>{selectedTitle}</p>
+              </div>
+            }
+          </div>
+
+          <div className='dashboard'>
+            {classes &&
+              <div className='standards'>
                 <Standards
                   standards={standards}
                   onClick={this.handleStandardClick}
@@ -123,10 +134,6 @@ class App extends Component {
             }
             {selectedId &&
               <div className='students'>
-                <div className='student-info'>
-                  <h2 className='bold studen-title'>Standard/Assessment Details</h2>
-                  <p>{selectedTitle}</p>
-                </div>
                 <Students
                   data={students}
                 />
