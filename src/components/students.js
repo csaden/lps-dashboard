@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 
 const STUDENT_KEY = 'StudentID';
-const WIDTH = 300;
+const WIDTH = 400;
 const HEIGHT = 600;
 const MARGIN = {
   top: 20,
   right: 40,
-  bottom: 20,
+  bottom: 40,
   left: 80
 };
 
@@ -89,7 +89,7 @@ export default class Students extends Component {
       .attr('x', 0)
       .attr('y', (d) => y(d[STUDENT_KEY]))
       .attr('height', y.bandwidth())
-      .on('mousemove', (d) => {
+      .on('mouseover', (d) => {
         tooltip
           .style('left', d3.event.pageX - 50 + 'px')
           .style('top', d3.event.pageY - 70 + 'px')
@@ -107,7 +107,6 @@ export default class Students extends Component {
   }
 
   render() {
-    console.log(this.props.data);
     return (
       <section className='students'>
         <svg

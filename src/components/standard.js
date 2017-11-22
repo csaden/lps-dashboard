@@ -89,7 +89,7 @@ export default class Standard extends Component {
             {_.map({A, B, C, D, F}, (val, key) => {
               const data = {letter: key, count: val, numStudents: A + B + C + D + F}
               return (
-                <StandardBar key={key} data={data}/>
+                <StandardBar key={`${standardID}-${key}`} data={data}/>
               );
             })}
           </span>

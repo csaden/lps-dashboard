@@ -52,6 +52,10 @@ html, body {
   font-family: 'Open Sans', sans-serif;
 }
 
+a, p {
+  line-height: normal;
+}
+
 a,
 a:focus {
   color: #525c65;
@@ -64,7 +68,6 @@ a:active {
 
 h2 {
   font-size: 16px;
-  margin-bottom: 10px;
 }
 
 p {
@@ -128,12 +131,17 @@ button:focus {
   flex-basis: 35%;
 }
 
+.student-title {
+  margin-bottom: 10px;
+}
+
 .standard {
   display: flex;
   flex-flow: row-nowrap;
   align-items: center;
   justify-content: space-between;
   max-height: 60px;
+  padding-right: 20px;
 }
 
 .standard-group + .standard-group,
@@ -177,6 +185,7 @@ button:focus {
   transform: rotate(-45deg);
 }
 
+.sections-compare-tooltip,
 .student-tooltip {
   position: absolute;
   display: none;
@@ -186,7 +195,8 @@ button:focus {
   border-radius: 4px;
   border: 1px solid #dbe2e8;
   padding: 14px;
-  text-align: center;
+  pointer-events: none;
+  line-height: 1.4;
 }
 
 .student-grades-x-axis > .tick {
@@ -202,6 +212,11 @@ button:focus {
   border: none;
   background-color: transparent;
   cursor: pointer;
+}
+
+.assessments {
+  margin-top: 20px;
+  background-color: #f2f2f2;
 }
 
 /* from https://stackoverflow.com/a/22156412 */
@@ -236,4 +251,14 @@ button:focus {
 .Chevron-right:after {
     left: -4px;
     border-left-color: #fff;
+}
+
+.sections-compare {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+}
+
+.sections-compare-x-axis .tick line {
+  stroke: #7d97ad;
 }
