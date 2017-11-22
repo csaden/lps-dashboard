@@ -13,14 +13,18 @@ export default class Assessments extends Component {
 
   render() {
     const {data, onClick} = this.props;
-    return _.map(data, (d) => {
-      return (
-        <Assessment
-          key={d.key}
-          assessment={d.value}
-          onClick={onClick}
-        />
-      );
-    });
+    return (
+      <div className='assessments'>
+        {_.map(data, (d) => {
+          return (
+            <Assessment
+              key={d.key}
+              assessment={d.value}
+              onClick={onClick}
+            />
+          );
+        })}
+      </div>
+    );
   }
 }

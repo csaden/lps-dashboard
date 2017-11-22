@@ -49,7 +49,7 @@ export default class Assessment extends Component {
     } = assessment;
 
     return (
-      <div className='standard assessments'>
+      <div className='standard'>
         <span className='toggle'>&nbsp;</span>
         <span className='standard-title'>
           <a
@@ -63,7 +63,7 @@ export default class Assessment extends Component {
           {_.map({A, B, C, D, F}, (val, key) => {
               const data = {letter: key, count: val, numStudents: A + B + C + D + F}
               return (
-                <StandardBar key={key} data={data}/>
+                <StandardBar key={`${assessmentID}-${key}`} data={data}/>
               );
             })}
         </span>

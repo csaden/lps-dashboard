@@ -7,7 +7,11 @@ export function groupDataByClass(data) {
   return d3.nest()
     .key(d => d.Section)
     .rollup(v => {
-      return {assessments: v};
+      return {
+        teacherName: _.get(v, '[0].TeacherName'),
+        courseName: _.get(v, '[0].CourseName'),
+        assessments: v
+      };
     })
     .object(data);
 }
@@ -35,6 +39,27 @@ export function getStudentScores(data, {Section, id, type}) {
 
 export function getStandardCounts(data) {
   return _.size(_.uniq(_.map(data, 'StandardID')));
+}
+
+export function getClassComparisons(data, {Section}) {
+  const sections = _.filter(data, (value, key) => {
+    const {courseName} = data[Section];
+    return value.courseName === courseName;
+  })
+
+  return _.reduce(sections, (avgsByStandard, {assessments}) => {
+    const section = _.get(assessments, '[0].Section');
+    const agg = getStandardAggregates(assessments);
+    const averages = _.map(agg, ({avg, standardTitle, standardID}) => ({
+      section: _.get(assessments, '[0].Section'),
+      teacherName: _.get(assessments, '[0].TeacherName'),
+      standardTitle,
+      standardID,
+      avg
+    }));
+    avgsByStandard[section] = {standards: averages};
+    return avgsByStandard;
+  }, {});
 }
 
 function getStandardAggregates(data) {
@@ -74,7 +99,7 @@ function getAssessmentAggregates(data) {
   return d3.nest()
     .key(d => d.AssessmentID)
     .rollup(v => ({
-      assessmentID: _.get(v, '[0]AssessmentID'),
+      assessmentID: _.get(v, '[0].AssessmentID'),
       assessmentTitle: _.get(v, '[0].AssessmentTitle'),
       ...getLetterGradeCounts(v),
       avg: getAvg(v),

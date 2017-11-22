@@ -7,7 +7,9 @@ import {
   groupDataByClass,
   getStandards,
   getStudentScores,
+  getClassComparisons
 } from './utils/aggregate';
+import SectionsCompare from './components/sections-compare';
 import Standards from './components/standards';
 import Students from './components/students';
 import './App.css';
@@ -57,7 +59,7 @@ class App extends Component {
 
   handleSelectClass = (option) => {
     const Section = option ? option.value : null;
-    this.setState({Section}, this.setStandards);
+    this.setState({Section, selectedId: null}, this.setStandards);
   }
 
   handleStandardClick = ({id, title, type}) => {
@@ -108,7 +110,7 @@ class App extends Component {
                   className=' Select-class'
                   clearable={false}
                   onChange={this.handleSelectClass}
-                  options={this.state.classes}
+                  options={classes}
                   placeholder='Select class'
                   searchable={true}
                   value={Section}
@@ -117,19 +119,24 @@ class App extends Component {
             }
             {selectedId &&
               <div className='students'>
-                <h2 className='bold studen-title'>{selectedType === 'assessment' ? 'Assessment' : 'Learning Target'} Details</h2>
+                <h2 className='bold student-title'>{selectedType === 'assessment' ? 'Assessment' : 'Learning Target'} Details</h2>
                 <p>{selectedTitle}</p>
               </div>
             }
           </div>
 
           <div className='dashboard'>
-            {classes &&
+            {Section &&
               <div className='standards'>
                 <Standards
                   standards={standards}
                   onClick={this.handleStandardClick}
                 />
+              </div>
+            }
+            {Section && !selectedId &&
+              <div className='students'>
+                <SectionsCompare data={getClassComparisons(data, {Section})}/>
               </div>
             }
             {selectedId &&
