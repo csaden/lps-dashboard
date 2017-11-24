@@ -178,7 +178,6 @@ button:focus {
 
 .students {
   flex-basis: 35%;
-  position: relative;
 }
 
 .student-title {
@@ -211,9 +210,9 @@ button:focus {
 
 .standard-bars {
   display: flex;
-  min-width: 105px;
   justify-content: space-between;
   border: 1px solid #dbe2e8;
+  height: 61px;
 }
 
 .labels {
@@ -240,6 +239,10 @@ button:focus {
   transform: rotate(-45deg);
 }
 
+.button-contain {
+  position: relative;
+}
+
 .reset-btn {
   position: absolute;
   top: 0;
@@ -256,6 +259,11 @@ button:focus {
   height: 28px;
 }
 
+#sections-compare {
+  position: relative;
+}
+
+.letter-grade-count-tooltip,
 .sections-compare-tooltip,
 .student-tooltip {
   position: absolute;
@@ -328,6 +336,11 @@ button:focus {
   display: flex;
   align-items: center;
   min-height: 40px;
+}
+
+.sections-compare-x-axis .tick text {
+  font-size: 16px;
+  fill: #2e3d49;
 }
 
 .sections-compare-x-axis .tick line {

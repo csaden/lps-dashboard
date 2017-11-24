@@ -129,7 +129,7 @@ class App extends Component {
               </div>
             }
             {selectedId &&
-              <div className='students'>
+              <div className='students button-contain'>
                 <h2 className='bold student-title'>{selectedType === 'assessment' ? 'Assessment' : 'Learning Target'} Details</h2>
                 <button className='reset-btn' onClick={this.handleResetClick}>Close</button>
                 <p>{selectedTitle}</p>
