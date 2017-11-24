@@ -5,6 +5,7 @@ import Papa from 'papaparse';
 import getSelectOptions from './utils/dropdowns';
 import {
   groupDataByClass,
+  groupDataByStudent,
   getStandards,
   getStudentScores,
   getClassComparisons
@@ -35,8 +36,9 @@ class App extends Component {
   }
 
   setData = ({data}) => {
+    const students = groupDataByStudent(data);
     data = groupDataByClass(data);
-    this.setState({data}, this.setClassSelections);
+    this.setState({data, students}, this.setClassSelections);
   }
 
   setError = (err, file, inputElem, reason) => {
@@ -68,6 +70,10 @@ class App extends Component {
     this.setState({selectedId: id, selectedTitle: title, selectedType: type, students});
   }
 
+  handleResetClick = () => {
+    this.setState({selectedId: null, selectedTitle: null, selectedType: null});
+  }
+
   render() {
     const {
       data,
@@ -84,24 +90,29 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">LPS Achievement</h1>
+          <h1 className="App-title">Student Achievement Data</h1>
         </header>
         <main className='App-main'>
-          <p className="App-intro">
-            To get started, upload a file of JumpRope data.
-          </p>
-          <form>
-            <input
-              type='file'
-              className='App-file-reader'
-              onChange={this.handleFileUpload}
-            />
-            {error &&
-              <p>{error}</p>
-            }
-          </form>
+          <div className='App-contain'>
+            <p className="App-intro">
+              To get started, upload a file of JumpRope data.
+            </p>
+            <form className='App-form'>
+              <input
+                id='App-file-reader'
+                name='App-file-reader'
+                type='file'
+                className='App-file-reader'
+                onChange={this.handleFileUpload}
+              />
+              <label htmlFor='App-file-reader'>Choose a file</label>
+              {error &&
+                <p>{error}</p>
+              }
+            </form>
+          </div>
           {data &&
-            <p className='App-intro'>Select the teacher, course, and section from the dropdowns to view class data.</p>
+            <p className='App-select'>Select the teacher, course, and section from the dropdowns to view class data.</p>
           }
           <div className='dashboard'>
             {classes &&
@@ -120,6 +131,7 @@ class App extends Component {
             {selectedId &&
               <div className='students'>
                 <h2 className='bold student-title'>{selectedType === 'assessment' ? 'Assessment' : 'Learning Target'} Details</h2>
+                <button className='reset-btn' onClick={this.handleResetClick}>Close</button>
                 <p>{selectedTitle}</p>
               </div>
             }

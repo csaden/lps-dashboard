@@ -84,7 +84,7 @@ export default class Standard extends Component {
               {title}
             </a>
           </span>
-          <span className='standard-value'>{assessmentCount}</span>
+          <span className='standard-value asssessment-count'>{assessmentCount}</span>
           <span className='standard-bars'>
             {_.map({A, B, C, D, F}, (val, key) => {
               const data = {letter: key, count: val, numStudents: A + B + C + D + F}
