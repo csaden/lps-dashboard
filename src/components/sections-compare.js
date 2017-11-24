@@ -9,7 +9,7 @@ const MARGIN = {
   top: 60,
   right: 40,
   bottom: 0,
-  left: 5
+  left: 10
 };
 
 export default class SectionsCompare extends Component {
@@ -122,7 +122,7 @@ export default class SectionsCompare extends Component {
     let i = 0;
     _.forEach(data, (value, key) => {
       d3.select(node).append('text')
-        .attr('x', 0 + (80 * i))
+        .attr('x', 0 + (70 * i))
         .attr('y', 20)
         .attr('class', 'legend')
         .style('cursor', 'pointer')
