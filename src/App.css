@@ -48,8 +48,9 @@ table {
 }
 
 html, body {
-  font-size: 14px;
+  font-size: 16px;
   font-family: 'Open Sans', sans-serif;
+  color: #2e3d49;
 }
 
 a, p {
@@ -78,8 +79,12 @@ button:focus {
   outline: none;
 }
 
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 .App-header {
-  background-color: #481151;
+  background-color: #863694;
   padding: 1em;
   font-size: 1.2em;
   color: white;
@@ -90,18 +95,61 @@ button:focus {
   margin: 0 auto;
 }
 
+.dashboard {
+  margin-bottom: 2em;
+}
+
+.App-contain {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
 .App-title {
   font-size: 1em;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 300;
+}
+
+.App-file-reader + label {
+  margin-left: 20px;
+  -webkit-font-smoothing: antialiased;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0.85em 1em;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #863694;
+  display: inline-block;
+  max-width: 100%;
+  letter-spacing: 0.165em;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
   text-transform: uppercase;
+  transition: 0.2s background-color ease-in-out,
+              0.2s border-color ease-in-out;
+  white-space: nowrap;
 }
 
 .App-file-reader {
-  margin-bottom: 1em;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 
 .App-intro {
-  font-size: 1em;
-  margin-bottom: 1em;
+  font-size: 16px;
+}
+
+.App-select {
+  margin-bottom: .5em;
 }
 
 .Select-class {
@@ -132,7 +180,7 @@ button:focus {
 }
 
 .student-title {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .standard {
@@ -161,13 +209,14 @@ button:focus {
 
 .standard-bars {
   display: flex;
-  min-width: 105px;
   justify-content: space-between;
   border: 1px solid #dbe2e8;
+  height: 61px;
 }
 
 .labels {
   border: none;
+  height: auto;
 }
 
 .standard-bar {
@@ -177,7 +226,12 @@ button:focus {
 }
 
 .standard-value {
-  flex-basis: 3%;
+  flex-basis: 5%;
+  text-align: right;
+}
+
+.asssessment-count {
+  text-align: left;
 }
 
 .rotate {
@@ -185,6 +239,31 @@ button:focus {
   transform: rotate(-45deg);
 }
 
+.button-contain {
+  position: relative;
+}
+
+.reset-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #7d97ad;
+  border-radius: 4px;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+  padding: 8px 10px;
+  height: 28px;
+}
+
+#sections-compare {
+  position: relative;
+}
+
+.letter-grade-count-tooltip,
 .sections-compare-tooltip,
 .student-tooltip {
   position: absolute;
@@ -259,6 +338,76 @@ button:focus {
   min-height: 40px;
 }
 
+.sections-compare-x-axis .tick text {
+  font-size: 16px;
+  fill: #2e3d49;
+}
+
 .sections-compare-x-axis .tick line {
   stroke: #7d97ad;
+}
+
+.student-grades-y-axis,
+.student-grades-x-axis {
+  font-size: 14px;
+}
+
+.student-grades-y-axis .domain,
+.student-grades-x-axis .domain {
+  stroke: #dbe2e8;
+}
+
+.student-grades-y-axis .tick line {
+  visibility: hidden;
+}
+
+.student-grades-x-axis .tick text
+.student-grades-y-axis .tick text {
+  fill: #2e3d49;
+}
+
+.student-grades-y-axis .tick:hover text {
+  fill: #7d97ad;
+  cursor: pointer;
+}
+
+.student-grades-x-axis .tick:first-of-type line,
+.student-grades-x-axis .tick:last-of-type line {
+  stroke: #dbe2e8;
+}
+
+.student-contain {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+}
+
+.student-name {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 1em;
+}
+
+.student-table {
+  display: inline-block;
+}
+
+.student-table th, .student-table td {
+  text-align: left;
+  padding: 4px 10px 4px 0px;
+}
+
+.student-courses {
+  margin-left: 20px;
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 33%;
+  justify-content: space-between;
+}
+
+.student-course {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 200px;
+  justify-content: space-between;
 }

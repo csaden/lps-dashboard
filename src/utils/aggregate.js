@@ -16,6 +16,21 @@ export function groupDataByClass(data) {
     .object(data);
 }
 
+export function groupDataByStudent(data) {
+  return d3.nest()
+    .key(d => d.StudentID)
+    .key(d => d.CourseName)
+    .rollup(v => {
+      const avg = getWeightedAvg(v);
+      return {
+        avg,
+        letterGrade: getLetterGrade(avg),
+        assessments: v
+      };
+    })
+    .object(data);
+}
+
 export function getStandards(data, {Section}) {
   const {assessments} = data[Section];
   return getStandardAggregates(assessments);
@@ -163,4 +178,18 @@ function getLetterGradeCounts(data, assessmentID) {
     return gradeCounts;
 
   }, {A: 0, B: 0, C: 0, D: 0, F: 0, DF: 0});
+}
+
+function getLetterGrade(score) {
+  if (score >= 90) {
+    return 'A';
+  } else if (score >= 80) {
+    return 'B';
+  } else if (score >= 70) {
+    return 'C'
+  } else if (score >= 60) {
+    return 'D';
+  } else {
+    return 'F';
+  }
 }

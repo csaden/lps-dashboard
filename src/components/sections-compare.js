@@ -9,7 +9,7 @@ const MARGIN = {
   top: 60,
   right: 40,
   bottom: 0,
-  left: 5
+  left: 10
 };
 
 export default class SectionsCompare extends Component {
@@ -112,24 +112,28 @@ export default class SectionsCompare extends Component {
         .attr('r', (d) => 10);
     });
 
-    const legend = _.map(data, (value, key) => ({[key]: false}));
+    // set legend section toggles to true / visible
+    const legend = _.reduce(data, (legend, value, key) => {
+      legend[key] = true;
+      return legend;
+    }, {});
 
     // add the toggle legend
     let i = 0;
     _.forEach(data, (value, key) => {
       d3.select(node).append('text')
-        .attr('x', 0 + (60 * i))
+        .attr('x', 0 + (70 * i))
         .attr('y', 20)
         .attr('class', 'legend')
         .style('cursor', 'pointer')
         .style('fill', c(key))
+        .text(key)
         .on('click', () => {
-          const active = legend[key] ? false : true
+          const active = legend[key] ? false : true;
           const opacity = active ? 1 : 0;
           d3.select(node).selectAll(`.dot-${_.replace(key, '#', '')}`).style('opacity', opacity)
           legend[key] = active;
-        })
-        .text(key);
+        });
       i += 1;
     })
   }

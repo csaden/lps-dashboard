@@ -24,11 +24,16 @@ export default class StandardBar extends Component {
   }
 
   createBarChart = () => {
-    const {numStudents, count} = this.props.data;
+    const {numStudents, count, letter} = this.props.data;
     const node = this.node;
     const yScale = d3.scaleLinear()
       .domain([0, numStudents])
       .range([0, HEIGHT]);
+
+    // add tooltip
+    const tooltip = d3.select('.letter-grade-count-chart')
+      .append('div')
+      .attr('class', 'letter-grade-count-tooltip')
 
     d3.select(node)
       .selectAll('rect')
@@ -50,15 +55,25 @@ export default class StandardBar extends Component {
       .attr('y', (d) =>  HEIGHT - yScale(d))
       .attr('height', (d) => yScale(d))
       .attr('width', WIDTH)
+      .on('mouseover', (d) => {
+          tooltip
+            .style('left', d3.event.pageX - 50 + 'px')
+            .style('top', d3.event.pageY - 70 + 'px')
+            .style('display', 'inline-block')
+            .html(`${count} ${letter}s`)
+        })
+      .on('mouseout', (d) => tooltip.style('display', 'none'));
   }
 
   render() {
     return (
-      <svg
-        ref={(node) => this.node = node}
-        width={WIDTH}
-        height={HEIGHT}
-      />
+      <span className='letter-grade-count-chart'>
+        <svg
+          ref={(node) => this.node = node}
+          width={WIDTH}
+          height={HEIGHT}
+        />
+      </span>
     )
   }
 }

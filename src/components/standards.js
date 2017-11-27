@@ -31,7 +31,7 @@ export default class Standards extends Component {
             <span className='bold standard-bar'>D</span>
             <span className='bold standard-bar'>F</span>
           </span>
-          <span className='bold standard-bar'>D/F</span>
+          <span className='bold standard-value'>D/F</span>
           <span className='bold standard-value'>Avg</span>
           <span className='bold standard-value'>Med</span>
           <span className='bold standard-value'>Max</span>
