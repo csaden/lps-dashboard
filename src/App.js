@@ -36,9 +36,9 @@ class App extends Component {
   }
 
   setData = ({data}) => {
-    const students = groupDataByStudent(data);
+    const studentGrades = groupDataByStudent(data);
     data = groupDataByClass(data);
-    this.setState({data, students}, this.setClassSelections);
+    this.setState({data, studentGrades}, this.setClassSelections);
   }
 
   setError = (err, file, inputElem, reason) => {
@@ -84,7 +84,8 @@ class App extends Component {
       selectedId,
       selectedTitle,
       selectedType,
-      students
+      students,
+      studentGrades
     } = this.state;
 
     return (
@@ -155,6 +156,7 @@ class App extends Component {
               <div className='students'>
                 <Students
                   data={students}
+                  studentGrades={studentGrades}
                 />
               </div>
             }

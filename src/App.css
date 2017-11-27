@@ -108,7 +108,6 @@ button:focus {
 
 .App-title {
   font-size: 1em;
-  text-transform: uppercase;
   -webkit-font-smoothing: antialiased;
   font-weight: 300;
 }
@@ -217,6 +216,7 @@ button:focus {
 
 .labels {
   border: none;
+  height: auto;
 }
 
 .standard-bar {
@@ -376,3 +376,38 @@ button:focus {
   stroke: #dbe2e8;
 }
 
+.student-contain {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+}
+
+.student-name {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 1em;
+}
+
+.student-table {
+  display: inline-block;
+}
+
+.student-table th, .student-table td {
+  text-align: left;
+  padding: 4px 10px 4px 0px;
+}
+
+.student-courses {
+  margin-left: 20px;
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 33%;
+  justify-content: space-between;
+}
+
+.student-course {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 200px;
+  justify-content: space-between;
+}

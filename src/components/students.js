@@ -2,6 +2,9 @@ import _ from 'lodash';
 import * as d3 from 'd3';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
+import Modal from 'react-modal';
+
+import Student from './student';
 
 const STUDENT_KEY = 'StudentID';
 const WIDTH = 400;
@@ -16,15 +19,15 @@ const MARGIN = {
 export default class Students extends Component {
 
   static PropTypes = {
-    data: PropTypes.array
+    data: PropTypes.array,
+    studentGrades: PropTypes.object
+  }
+
+  state = {
+    student: {}
   }
 
   componentDidMount() {
-    this.clearBarChart();
-    this.createBarChart();
-  }
-
-  componentDidUpdate() {
     this.clearBarChart();
     this.createBarChart();
   }
@@ -65,7 +68,7 @@ export default class Students extends Component {
     const yAxis = d3.axisLeft(y);
 
     // add tooltip
-    const tooltip = d3.select('.students')
+    const tooltip = d3.select('.students-chart')
       .append('div')
       .attr('class', 'student-tooltip')
 
@@ -104,11 +107,56 @@ export default class Students extends Component {
     chart.append('g')
       .attr('class', 'student-grades-x-axis')
       .call(xAxis);
+
+    chart.selectAll('.student-grades-y-axis .tick')
+      .on('click', (d) => {
+        this.toggleStudentModal(d);
+      });
+  }
+
+  toggleStudentModal = (id) => {
+    const {studentGrades} = this.props;
+    this.setState(prevState => {
+      let student = {};
+      if (!prevState.isModalOpen) {
+        student = studentGrades[id];
+      }
+      return {
+        student,
+        isModalOpen: !prevState.isModalOpen
+      };
+    });
+  }
+
+  handleModalClose = () => {
+    this.setState({student: {}, isModalOpen: false});
   }
 
   render() {
+    const {isModalOpen, student} = this.state;
+
     return (
-      <section className='students'>
+      <section className='students-chart'>
+        <Modal
+          isOpen={isModalOpen}
+          onRequestClose={this.handleModalClose}
+          contentLabel='Student Details Modal'
+          style={{
+            overlay: {
+              backgroundColor: 'rgba(46, 60, 73, 0.7)',
+              zIndex: 1
+            },
+            content: {
+              position: 'relative',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              margin: '40px 20px'
+            }
+          }}>
+          <Student data={student} onClose={this.handleModalClose}/>
+        </Modal>
         <svg
           id='student-grades'
           ref={(node) => this.node = node}

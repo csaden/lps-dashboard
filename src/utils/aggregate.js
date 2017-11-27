@@ -181,23 +181,15 @@ function getLetterGradeCounts(data, assessmentID) {
 }
 
 function getLetterGrade(score) {
-  let grade;
-  switch (score) {
-    case score >= 90:
-      grade = 'A';
-      break;
-    case score >= 80:
-      grade = 'B';
-      break;
-    case score >= 70:
-      grade = 'C'
-      break;
-    case score >= 60:
-      grade = 'D';
-      break;
-    default:
-      grade = 'F';
-      break;
+  if (score >= 90) {
+    return 'A';
+  } else if (score >= 80) {
+    return 'B';
+  } else if (score >= 70) {
+    return 'C'
+  } else if (score >= 60) {
+    return 'D';
+  } else {
+    return 'F';
   }
-  return grade;
 }
