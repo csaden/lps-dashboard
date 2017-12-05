@@ -14,7 +14,8 @@ export default class Student extends Component {
 
   state = {
     isToggled: false,
-    selectedAssessments: []
+    selectedAssessments: [],
+    courseKey: null
   }
 
   handleToggleAssessments = (event, courseKey) => {
@@ -23,21 +24,22 @@ export default class Student extends Component {
     this.setState(prevState => {
       return {
         [courseKey]: !prevState[courseKey],
-        selectedAssessments: data[courseKey].assessments
+        selectedAssessments: data[courseKey].assessments,
+        courseKey: courseKey
       };
     });
   }
 
   render() {
     const {data, onClose} = this.props;
-    const {selectedAssessments} = this.state;
+    const {selectedAssessments, courseKey} = this.state;
     const row = data[_.keys(data)[0]].assessments[0];
     const studentName = row.FirstName + ' ' + row.LastName;
 
     return (
       <div>
         <button className='reset-btn' onClick={onClose}>close</button>
-        <h2 className='student-name'>Student</h2>
+        <h2 className='student-name'>{studentName}</h2>
         <div className='student-contain'>
           <table className='student-table'>
             <thead>
@@ -76,7 +78,10 @@ export default class Student extends Component {
           })}
           </div>
           <div className='student-assessments'>
-            <GradesBarChart data={selectedAssessments}/>
+            <GradesBarChart
+              data={selectedAssessments}
+              courseTitle={courseKey}
+            />
           </div>
         </div>
       </div>

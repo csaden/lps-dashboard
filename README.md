@@ -22,7 +22,8 @@ SBG and Mathematics
 The dashboard could be used with any dataset that adheres to the following schema.
 
 AssessmentID - unique assessment id
-AssessmentTitle - name of the assessment to be displayed
+AssessmentTitle - name of the assessment (may include date, weight, and type)
+AsessmentTitleRaw - name of the assessment to be displayed 
 CourseName - name of the name
 Section - unique section id or name of a section (also called a class "Period")
 StandardID - unique standard id

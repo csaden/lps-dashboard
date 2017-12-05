@@ -6,7 +6,8 @@ import React, {Component} from 'react';
 import wrap from '../utils/text';
 
 const WIDTH = 400;
-const HEIGHT = 400;
+const HEIGHT = 700;
+const BAR_WIDTH = 40;
 const MARGIN = {
   top: 20,
   right: 20,
@@ -17,7 +18,8 @@ const MARGIN = {
 export default class GradesBarChart extends Component {
 
   static propTypes = {
-    data: PropTypes.array
+    data: PropTypes.array,
+    courseTitle: PropTypes.string
   }
 
   componentDidMount() {
@@ -39,14 +41,14 @@ export default class GradesBarChart extends Component {
     const {data} = this.props;
 
     const width = WIDTH - MARGIN.left - MARGIN.right;
-    const height = HEIGHT - MARGIN.top - MARGIN.bottom;
+    const height = Math.min(HEIGHT, BAR_WIDTH * _.size(data)) - MARGIN.top - MARGIN.bottom;
 
     const x = d3.scaleLinear()
       .domain([0, 100])
       .range([0, width]);
 
     const y = d3.scaleBand()
-      .domain(_.map(data, (d) => d.AssessmentTitle))
+      .domain(_.map(data, (d) => d.AssessmentTitleRaw))
       .range([height, 0])
       .padding(0.1)
 
@@ -76,7 +78,7 @@ export default class GradesBarChart extends Component {
       .attr('class', 'student-assessment-bar')
       .style('fill', '#984ea3')
       .attr('x', 0)
-      .attr('y', (d) => y(d.AssessmentTitle))
+      .attr('y', (d) => y(d.AssessmentTitleRaw))
       .attr('height', y.bandwidth())
       .transition()
       .duration(1000)
@@ -88,10 +90,11 @@ export default class GradesBarChart extends Component {
   }
 
   render() {
-    const {data} = this.props;
+    const {data, courseTitle} = this.props;
 
     return (_.size(data) > 0 &&
       <div className='grades-bar-chart'>
+        <h2 className='grades-bar-chart-header'>{courseTitle}</h2>
         <svg
           id='student-assessments-bar-chart'
           ref={(node) => this.node = node}/>

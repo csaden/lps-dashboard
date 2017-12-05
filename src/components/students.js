@@ -13,7 +13,7 @@ const MARGIN = {
   top: 20,
   right: 40,
   bottom: 40,
-  left: 80
+  left: 200
 };
 
 export default class Students extends Component {
@@ -42,7 +42,8 @@ export default class Students extends Component {
 
     let students = _.map(data, (val, key) => ({
       [STUDENT_KEY]: key,
-      score: val.Score
+      score: val.Score,
+      studentName: val.studentName
     }));
     students = students.sort((a, b) => {
       return d3.ascending(a.score, b.score);
@@ -58,14 +59,15 @@ export default class Students extends Component {
     const y = d3.scaleBand()
       .domain(_.map(students, (s) => s[STUDENT_KEY]))
       .range([height, 0])
-      .padding(0.1)
+      .padding(0.1);
 
     const xAxis = d3.axisTop(x)
       .tickValues([0, 70, 100])
       .tickSizeInner([-height])
       .tickPadding(10);
 
-    const yAxis = d3.axisLeft(y);
+    const yAxis = d3.axisLeft(y)
+      .tickFormat((d) => _.find(students, [STUDENT_KEY, d]).studentName || 'Unknown');
 
     // add tooltip
     const tooltip = d3.select('.students-chart')
@@ -82,7 +84,6 @@ export default class Students extends Component {
       .attr('class', 'student-grades-y-axis')
       .call(yAxis);
 
-
     chart.selectAll('.student-bar')
       .data(students)
       .enter()
@@ -97,7 +98,7 @@ export default class Students extends Component {
           .style('left', d3.event.pageX - 50 + 'px')
           .style('top', d3.event.pageY - 70 + 'px')
           .style('display', 'inline-block')
-          .html(`Student: ${d[STUDENT_KEY]}<br>Score: ${d.score}`)
+          .html(`${d.studentName}<br>Score: ${d.score}<br>StudentID:${d[STUDENT_KEY]}`)
       })
       .on('mouseout', (d) => tooltip.style('display', 'none'))
       .transition()

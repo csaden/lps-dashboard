@@ -47,6 +47,7 @@ export function getStudentScores(data, {Section, id, type}) {
     .rollup(v => {
       return {
         Score: getWeightedAvg(v),
+        studentName: _.get(v, '[0].FirstName') + ' ' + _.get(v, '[0].LastName')
       };
     })
     .object(assessments);

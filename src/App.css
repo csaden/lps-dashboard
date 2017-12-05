@@ -398,10 +398,10 @@ button:focus {
 }
 
 .student-courses {
-  margin-left: 20px;
+  margin: 0 20px;
   display: flex;
   flex-flow: row wrap;
-  max-width: 33%;
+  max-width: 35%;
   justify-content: space-between;
 }
 
@@ -410,4 +410,12 @@ button:focus {
   flex-flow: row wrap;
   max-width: 200px;
   justify-content: space-between;
+}
+
+.grades-bar-chart-header {
+  padding-bottom: 6px;
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
