@@ -46,7 +46,7 @@ export default class GradesBarChart extends Component {
       .range([0, width]);
 
     const y = d3.scaleBand()
-      .domain(_.map(data, (d) => d.AssessmentTitleRaw))
+      .domain(_.map(data, (d) => d.AssessmentTitle))
       .range([height, 0])
       .padding(0.1)
 
@@ -76,7 +76,7 @@ export default class GradesBarChart extends Component {
       .attr('class', 'student-assessment-bar')
       .style('fill', '#984ea3')
       .attr('x', 0)
-      .attr('y', (d) => y(d.AssessmentTitleRaw))
+      .attr('y', (d) => y(d.AssessmentTitle))
       .attr('height', y.bandwidth())
       .transition()
       .duration(1000)
