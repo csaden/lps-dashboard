@@ -8,46 +8,45 @@ The dashboard is designed in a way to help teachers and coaches reflect on stude
 ## Standards-based grading (SBG)
 Standards-based grading involves measuring the proficiency of learners on well-defined course objectives (knowledge and skills).
 
-https://www.competencyworks.org/analysis/what-is-the-difference-between-standards-based-grading/
+https://www.competencyworks.org/analysis/what-is-the-difference-between-standards-based-grading/  
+[Peaks and Pits of Standards Based Grading](https://www.edutopia.org/blog/peaks-pits-standards-based-grading-josh-work)  
+[Problems with Standards Based Grading](https://www.edutopia.org/discussion/problem-standards-based-grading)  
 
-[Peaks and Pits of Standards Based Grading](https://www.edutopia.org/blog/peaks-pits-standards-based-grading-josh-work)
-[Problems with Standards Based Grading](https://www.edutopia.org/discussion/problem-standards-based-grading)
-
-SBG and Mathematics
-[WhenMathHappens](https://whenmathhappens.com/standards-based-grading/)
-[Math Assessment Resource - Dan Meyer](http://blog.mrmeyer.com/2007/the-comprehensive-math-assessment-resource/)
-[Assessments - Dan Meyer](http://blog.mrmeyer.com/category/assessment/)
+SBG and Mathematics  
+[WhenMathHappens](https://whenmathhappens.com/standards-based-grading/)  
+[Math Assessment Resource - Dan Meyer](http://blog.mrmeyer.com/2007/the-comprehensive-math-assessment-resource/)  
+[Assessments - Dan Meyer](http://blog.mrmeyer.com/category/assessment/)  
 
 ### Schema
 The dashboard could be used with any dataset that adheres to the following schema.
 
-AssessmentID - unique assessment id
-AssessmentTitle - name of the assessment (may include date, weight, and type)
-AsessmentTitleRaw - name of the assessment to be displayed 
-CourseName - name of the name
-Section - unique section id or name of a section (also called a class "Period")
-StandardID - unique standard id
-StandardTitle - name of the standard or learning target
-StandardType - category of the standard such as academic or habit (executive functioning skills)
-TeacherName - name of the teacher
-StudentID - unique student id
-FirstName - first name of the student taking the assessment
-LastName - last name of the student taking the assessment
-Score (assumed to be 0-100)
-Weight - weight to the assessment (must be greater than zero)
+AssessmentID - unique assessment id  
+AssessmentTitle - name of the assessment (may include date, weight, and type)  
+AsessmentTitleRaw - name of the assessment to be displayed  
+CourseName - name of the name  
+Section - unique section id or name of a section (also called a class "Period")  
+StandardID - unique standard id  
+StandardTitle - name of the standard or learning target  
+StandardType - category of the standard such as academic or habit (executive functioning skills)  
+TeacherName - name of the teacher  
+StudentID - unique student id  
+FirstName - first name of the student taking the assessment  
+LastName - last name of the student taking the assessment  
+Score (assumed to be 0-100)  
+Weight - weight to the assessment (must be greater than zero)  
 
 ### File upload
 
 The dashboard currently only supports the upload of `.csv` files.
 
 ### Dependencies
-- node@^6.9.4
-- npm@^3.10.10
+- node@^6.9.4  
+- npm@^3.10.10  
 
 ### Get Started
-- `git clone` the repository
-- `npm install`
-- `npm start`
+- `git clone` the repository  
+- `npm install`  
+- `npm start`  
 
 ### `npm start`
 
