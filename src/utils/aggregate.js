@@ -135,7 +135,7 @@ function getMax(data) {
 }
 
 function getMin(data) {
-  return d3.max(data, (d) => +d.Score);
+  return d3.min(data, (d) => +d.Score);
 }
 
 function getAvg(data) {
