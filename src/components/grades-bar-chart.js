@@ -7,7 +7,7 @@ import wrap from '../utils/text';
 
 const WIDTH = 400;
 const HEIGHT = 700;
-const BAR_WIDTH = 40;
+const BAR_WIDTH = 30;
 const MARGIN = {
   top: 20,
   right: 20,

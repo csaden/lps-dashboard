@@ -419,3 +419,7 @@ button:focus {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.student {
+  overflow-y: scroll;
+}

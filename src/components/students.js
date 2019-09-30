@@ -153,7 +153,7 @@ export default class Students extends Component {
               left: 0,
               right: 0,
               bottom: 0,
-              margin: '40px 20px'
+              margin: '20px'
             }
           }}>
           <Student data={student} onClose={this.handleModalClose}/>
