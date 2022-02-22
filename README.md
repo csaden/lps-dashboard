@@ -4,7 +4,7 @@ https://learning-progress-dashboard.herokuapp.com/
 
 ## About
 
-The dashboard is designed in a way to help teachers and coaches reflect on student achievement and monitor academic progress. The dashboard allows to teachers to see how students are performing on Learning Targets (or Standards), which are considered to be a group of closely related topics. Each Learning Target (or Standard) can be assessed using one or more assessment. Assessments can be of any type (i.e exit ticket, quiz, test, paper) and should help learners and teachers determine whether or not each learner met the learning objective for a given assessment.
+The dashboard is designed in a way to help teachers and coaches reflect on student achievement and monitor academic progress. The dashboard allows teachers to see how students are performing on Learning Targets (or Standards), which are considered to be a group of closely related topics. Each Learning Target (or Standard) can be assessed using one or more assessment. Assessments can be of any type (i.e exit ticket, quiz, test, paper) and should help learners and teachers determine whether or not each learner met the learning objective for a given assessment.
 
 ## Initial Wireframes
 
